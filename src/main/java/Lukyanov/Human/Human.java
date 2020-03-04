@@ -2,17 +2,19 @@ package Lukyanov.Human;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class Human {
+
     //fields for DTO
     private long id;
     private String name;
     private Address address;
-    private String birthDate;
+    private Date birthDate;
 
-    private String editedBy;
-    private String createdDate;
-    private String modifiedDate;
+    private long editedBy;
+    private Date modifiedDate;
 
     @Data
     public class Address {
@@ -24,8 +26,29 @@ public class Human {
         private String flat;
         private int index;
 
-        private String editedBy;
-        private String createdDate;
-        private String modifiedDate;
+        private long editedBy;
+        private Date modifiedDate;
+
+        @Override
+        public String toString() {
+            return "Address: " +
+                    "{Country: " + country +
+                    ", City: " + city +
+                    ", Street: " + street +
+                    ", Home: " + home +
+                    ", Flat: " + flat +
+                    ", Index: " + index +
+                    ", editedBy: " + editedBy +
+                    ", modifiedDate: " + modifiedDate +"}";
+        }
+    }
+    @Override
+    public String toString(){
+        return "Human{" +
+                "id: " + id +
+                ", name: " + name +
+                ", birthDate: " + birthDate +
+                ", editedBy: " + editedBy +
+                ", modifiedDate: " + modifiedDate + "}";
     }
 }
