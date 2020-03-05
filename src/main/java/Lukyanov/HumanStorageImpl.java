@@ -10,36 +10,39 @@ import java.util.Random;
 public class HumanStorageImpl implements HumanStorage<Human> {
     @Override
     public Human getEntity(long id) {
-        return createHuman();
+        return createHuman(id);
     }
 
     @Override
     public List<Human> getAllEntities() {
         List<Human> humans = new ArrayList<>();
+        Random random = new Random();
         for (int i=0; i<5; i++) {
-            humans.add(createHuman());
+            humans.add(createHuman(random.nextLong()));
         }
         return humans;
     }
 
     @Override
     public void saveEntity(Human human) {
+        System.out.println("Save entity:");
         System.out.println(human);
     }
 
     @Override
     public void saveAllEntities(List<Human> humans) {
-
+        System.out.println("Save all entities:");
+        for (Human human:humans) {
+            System.out.println(human);
+        }
     }
 
-    public Human createHuman(){
+    public Human createHuman(long UUID){
         Human human = new Human();
-        Random random = new Random();
-        long UUID = random.nextLong();
 
-        human.setId(random.nextLong());
+        human.setId(UUID);
         human.setName("human"+UUID);
-        //Human.Address address = new Human.Address();
+        human.setAddress(createAddress(human, UUID));
 
         // -946771200000L = January 1, 1940
         // Add up to 80 years to it
@@ -47,8 +50,23 @@ public class HumanStorageImpl implements HumanStorage<Human> {
         human.setBirthDate(new Date(ms));
 
         human.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
+        Random random = new Random();
         human.setEditedBy(random.nextLong());
 
         return human;
+    }
+
+    public Human.Address createAddress(Human human, long id) {
+        Random random = new Random();
+        Human.Address address = human.new Address();
+        address.setCountry("Country"+id);
+        address.setCity("City"+id);
+        address.setStreet("Street"+id);
+        address.setHome("Home"+id);
+        address.setFlat("Flat"+id);
+        address.setIndex(random.nextInt());
+        address.setEditedBy(random.nextLong());
+        address.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
+        return address;
     }
 }
