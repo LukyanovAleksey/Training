@@ -15,6 +15,8 @@ public class HumanService implements HumanStorage<HumanDTO>{
         Human human = storage.getEntity(id);
         HumanDTO humanDTO = new HumanDTO();
         mapper.toDto(human, humanDTO);
+        System.out.println("Get entity:");
+        System.out.println(humanDTO.toString());
         return humanDTO;
     }
 
@@ -22,17 +24,18 @@ public class HumanService implements HumanStorage<HumanDTO>{
     public List<HumanDTO> getAllEntities() {
         List<HumanDTO> humanDTOList = new ArrayList<>();
         List<Human> humans = storage.getAllEntities();
+        System.out.println("Get all entities:");
         for(Human human:humans) {
             HumanDTO humanDTO = new HumanDTO();
             mapper.toDto(human, humanDTO);
             humanDTOList.add(humanDTO);
+            System.out.println(humanDTO.toString());
         }
         return humanDTOList;
     }
 
     @Override
     public void saveEntity(HumanDTO humanDTO) {
-        System.out.println(humanDTO.toString());
         Human human = new Human();
         mapper.toEntity(human, humanDTO);
         storage.saveEntity(human);
@@ -43,7 +46,6 @@ public class HumanService implements HumanStorage<HumanDTO>{
         List<Human> humans = new ArrayList<>();
         for (HumanDTO humanDTO:list) {
             Human human = new Human();
-            System.out.println(humanDTO.toString());
             mapper.toEntity(human, humanDTO);
             humans.add(human);
         }
