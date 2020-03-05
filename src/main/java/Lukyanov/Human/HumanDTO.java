@@ -16,6 +16,7 @@ public class HumanDTO {
         return "Human{" +
                 "id: " + id +
                 ", name: " + name +
+                ", address: " + address.toString() +
                 ", birthDate: " + birthDate + "}";
     }
 
@@ -30,8 +31,7 @@ public class HumanDTO {
 
         @Override
         public String toString() {
-            return "Address: " +
-                    "{Country: " + country +
+            return "{Country: " + country +
                     ", City: " + city +
                     ", Street: " + street +
                     ", Home: " + home +
