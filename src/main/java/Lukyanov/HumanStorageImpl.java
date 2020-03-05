@@ -37,7 +37,7 @@ public class HumanStorageImpl implements HumanStorage<Human> {
         }
     }
 
-    public Human createHuman(long UUID){
+    private Human createHuman(long UUID){
         Human human = new Human();
 
         human.setId(UUID);
@@ -56,7 +56,7 @@ public class HumanStorageImpl implements HumanStorage<Human> {
         return human;
     }
 
-    public Human.Address createAddress(Human human, long id) {
+    private Human.Address createAddress(Human human, long id) {
         Random random = new Random();
         Human.Address address = human.new Address();
         address.setCountry("Country"+id);
