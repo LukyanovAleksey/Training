@@ -32,7 +32,7 @@ public class MapperHuman implements Mapper<Human, HumanDTO> {
         human.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
     }
 
-    public void addressMapper(Human.Address address, HumanDTO.AddressDTO addressDTO) {
+    private void addressMapper(Human.Address address, HumanDTO.AddressDTO addressDTO) {
         address.setCountry(addressDTO.getCountry());
         address.setCity(addressDTO.getCity());
         address.setStreet(addressDTO.getStreet());
@@ -45,7 +45,7 @@ public class MapperHuman implements Mapper<Human, HumanDTO> {
         address.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
     }
 
-    public void addressDtoMapper(Human.Address address, HumanDTO.AddressDTO addressDTO) {
+    private void addressDtoMapper(Human.Address address, HumanDTO.AddressDTO addressDTO) {
         addressDTO.setCountry(address.getCountry());
         addressDTO.setCity(address.getCity());
         addressDTO.setStreet(address.getStreet());
