@@ -12,6 +12,7 @@ public class MapperHuman implements Mapper<Human, HumanDTO> {
         humanDTO.setId(human.getId());
         humanDTO.setName(human.getName());
         humanDTO.setBirthDate(human.getBirthDate());
+        humanDTO.setAddress(humanDTO.new AddressDTO());
         addressDtoMapper(human.getAddress(), humanDTO.getAddress());
     }
 
@@ -22,6 +23,7 @@ public class MapperHuman implements Mapper<Human, HumanDTO> {
         human.setId(humanDTO.getId());
         human.setName(humanDTO.getName());
         human.setBirthDate(humanDTO.getBirthDate());
+        human.setAddress(human.new Address());
         addressMapper(human.getAddress(), humanDTO.getAddress());
 
         Random random = new Random();
