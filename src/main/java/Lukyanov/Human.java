@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Human {
+public class Human implements Comparable<Human> {
     private String fio;
     private int age;
     private Address address;
@@ -24,6 +24,11 @@ public class Human {
         public String toString() {
             return "{"+city+", "+street+", "+home+", "+flat+"}";
         }
+    }
+
+    @Override
+    public int compareTo(Human o) {
+        return this.fio.compareTo(o.getFio());
     }
 
     @Override

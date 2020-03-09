@@ -1,9 +1,7 @@
 package Lukyanov;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,31 +11,29 @@ public class Application {
         //Duplicates: 0-1, 2-3, 4-5
         humanArray[0] = new Human("John Doe", 30, null);
         humanArray[0].setAddress(humanArray[0].new Address("Togliatti", "Frunze", "31", 46));
-        humanArray[1] = new Human("John Doe", 30, null);
-        humanArray[1].setAddress(humanArray[1].new Address("Togliatti", "Frunze", "31", 46));
+        humanArray[1]=humanArray[0];
 
         humanArray[2] = new Human("Kye Thomas", 54, null);
-        humanArray[2].setAddress(humanArray[2].new Address("Самара", "Пермитина", "37", 57));
-        humanArray[3] = new Human("Kye Thomas", 54, null);
-        humanArray[3].setAddress(humanArray[3].new Address("Самара", "Пермитина", "37", 57));
+        humanArray[2].setAddress(humanArray[2].new Address("Samara", "Permitina", "37", 57));
+        humanArray[3]=humanArray[2];
 
         humanArray[4] = new Human("Conner Rodriguez", 54, null);
-        humanArray[4].setAddress(humanArray[4].new Address("Дубовское", "Прогонная", "68", 326));
-        humanArray[5] = new Human("Conner Rodriguez", 54, null);
-        humanArray[5].setAddress(humanArray[5].new Address("Дубовское", "Прогонная", "68", 326));
+        humanArray[4].setAddress(humanArray[4].new Address("Dubovskoe", "Progonnaya", "68", 326));
+        humanArray[5]=humanArray[4];
 
         humanArray[6] = new Human("Silas Torres", 23, null);
-        humanArray[6].setAddress(humanArray[6].new Address("Турочак", "Автономная", "28", 258));
+        humanArray[6].setAddress(humanArray[6].new Address("Turochak", "Autonomnaya", "28", 258));
 
         humanArray[7] = new Human("Benson White", 34, null);
-        humanArray[7].setAddress(humanArray[7].new Address("Северодвинск", "Энергетиков проезд", "93", 291));
+        humanArray[7].setAddress(humanArray[7].new Address("Severodvinsk", "Energetikov proezd", "93", 291));
 
         humanArray[8] = new Human("Sabrina James", 25, null);
-        humanArray[8].setAddress(humanArray[8].new Address("Ухта", "Полковая", "82", 167));
+        humanArray[8].setAddress(humanArray[8].new Address("Ukhta", "Polkovaya", "82", 167));
 
         humanArray[9] = new Human("Lilith Richardson", 28, null);
-        humanArray[9].setAddress(humanArray[9].new Address("Светлоград", "Бахрушина", "65", 1));
+        humanArray[9].setAddress(humanArray[9].new Address("Svetlograd", "Bahrushina", "65", 1));
 
+        printSeparator('#');
         System.out.println("1. Заполнить ArrayList этими объектами:");
         List<Human> humans = new ArrayList<>();
         Collections.addAll(humans, humanArray);
@@ -63,9 +59,33 @@ public class Application {
         System.out.println("6. Отсортировать людей по адресу (лексикографическая сортировка полного адреса)");
         sortHumansByAddress(humans);
         System.out.println(humans);
+
+        printSeparator('#');
+        System.out.println("Задание 7 и 8");
+        User user = new User("John Doe", User.Role.ADMIN);
+        userGreeting(user);
+
+        printSeparator('#');
+        System.out.println("9. Написать программу сортирующую HashMap по ключу. (Создание и генерация данными какими захотите)");
+        Map<String, Human> map = new HashMap<>();
+        for (Human human:humans) {
+            map.put(human.getFio(), human);
+        }
+        TreeMap<String, Human> sortedMap = new TreeMap<>(map);
+        System.out.println(sortedMap);
+
+        printSeparator('#');
+        System.out.println("10. Написать программу сортирующую HashMap по значнию. (Создание и генерация данными какими захотите)");
+        Map<String, Human> sortedByValueMap = sortMapByValue(map);
+        System.out.println(sortedByValueMap);
+
+        printSeparator('#');
+        System.out.println("11. Заполнить рандомными значениями LinkedList, вывести содержимое каждого элемента и его индекс.");
+        fillLinkedListAndPrintOut();
     }
 
     private static void printSeparator(char ch) {
+        System.out.println();
         for (int i=0; i<30; i++) {
             System.out.print(ch);
         }
@@ -110,6 +130,32 @@ public class Application {
     private static void sortHumansByAddress(List<Human> humanList) {
         Comparator<Human> humanComparatorByAddress = (o1, o2) -> o1.getAddress().toString().compareTo(o2.getAddress().toString());
         humanList.sort(humanComparatorByAddress);
+    }
+
+    private static void userGreeting(User user) {
+        Map<User.Role, String> descriptionMap = new HashMap<>();
+        descriptionMap.put(User.Role.ADMIN, "Administrator description");
+        descriptionMap.put(User.Role.MODERATOR, "Moderator description");
+        descriptionMap.put(User.Role.USER, "User description");
+        System.out.println("Greeting user "+user.getFio() +" with role "+ user.getRole() +" with description " + descriptionMap.get(user.getRole()));
+    }
+
+    private static Map<String, Human> sortMapByValue(Map<String, Human> map) {
+        Map<String, Human> result = new LinkedHashMap<>();
+        Stream<Map.Entry<String, Human>> stream = map.entrySet().stream();
+        stream.sorted(Comparator.comparing(e -> e.getValue())).forEach(e -> result.put(e.getKey(), e.getValue()));
+        return result;
+    }
+
+    private static void fillLinkedListAndPrintOut() {
+        Random rnd = new Random();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            linkedList.add(rnd.nextInt());
+        }
+        for (int value:linkedList) {
+            System.out.println("Index: "+linkedList.indexOf(value)+ "; Value: "+value);
+        }
     }
 
 }
