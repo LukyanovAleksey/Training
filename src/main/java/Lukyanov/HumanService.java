@@ -2,11 +2,15 @@ package Lukyanov;
 
 import Lukyanov.Human.Human;
 import Lukyanov.Human.HumanDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HumanService implements HumanStorage<HumanDTO>{
+    private Logger log = LoggerFactory.getLogger(HumanService.class);
+
     private HumanStorage<Human> storage = new HumanStorageImpl();
     private Mapper<Human, HumanDTO> mapper = new MapperHuman();
 

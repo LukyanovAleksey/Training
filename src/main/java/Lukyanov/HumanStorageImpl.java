@@ -1,6 +1,8 @@
 package Lukyanov;
 
 import Lukyanov.Human.Human;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class HumanStorageImpl implements HumanStorage<Human> {
+    private Logger log = LoggerFactory.getLogger(HumanStorageImpl.class);
+
     @Override
     public Human getEntity(long id) {
         return createHuman(id);

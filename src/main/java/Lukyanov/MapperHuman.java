@@ -2,11 +2,15 @@ package Lukyanov;
 
 import Lukyanov.Human.Human;
 import Lukyanov.Human.HumanDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.Random;
 
 public class MapperHuman implements Mapper<Human, HumanDTO> {
+    private Logger log = LoggerFactory.getLogger(MapperHuman.class);
+
     @Override
     public void toDto(Human human, HumanDTO humanDTO) {
         humanDTO.setId(human.getId());
