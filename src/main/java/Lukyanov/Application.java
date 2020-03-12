@@ -1,19 +1,31 @@
 package Lukyanov;
 
+import Lukyanov.Exceptions.HumanServiceException;
 import Lukyanov.Human.HumanDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Random;
 
 public class Application {
     public static void main(String[] args) {
+        Logger log = LoggerFactory.getLogger(Application.class);
+        log.info("The program has been started");
+
         Random random = new Random();
         HumanService service = new HumanService();
-        HumanDTO humanDTO = service.getEntity(random.nextLong());
+        HumanDTO humanDTO = null;
+        try {
+            humanDTO = service.getEntity(random.nextLong());
+        } catch (HumanServiceException e) {
+            e.printStackTrace();
+        }
         List<HumanDTO> listOfHumanDTO = service.getAllEntities();
         service.saveEntity(humanDTO);
         service.saveAllEntities(listOfHumanDTO);
-        System.out.println("All tasks have been finished!");
+        log.info("All tasks have been finished!");
+
     }
 }
 

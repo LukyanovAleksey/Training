@@ -57,6 +57,7 @@ public class HumanStorageImpl implements HumanStorage<Human> {
         Random random = new Random();
         human.setEditedBy(random.nextLong());
 
+        log.info("Human " + human + " has been created");
         return human;
     }
 
@@ -71,6 +72,7 @@ public class HumanStorageImpl implements HumanStorage<Human> {
         address.setIndex(random.nextInt());
         address.setEditedBy(random.nextLong());
         address.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
+        log.info("Address " + address + " has been created for Human " + human);
         return address;
     }
 }

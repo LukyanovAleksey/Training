@@ -1,5 +1,6 @@
 package Lukyanov;
 
+import Lukyanov.Exceptions.HumanServiceException;
 import Lukyanov.Human.Human;
 import Lukyanov.Human.HumanDTO;
 import org.slf4j.Logger;
@@ -15,12 +16,16 @@ public class HumanService implements HumanStorage<HumanDTO>{
     private Mapper<Human, HumanDTO> mapper = new MapperHuman();
 
     @Override
-    public HumanDTO getEntity(long id) {
+    public HumanDTO getEntity(long id) throws HumanServiceException {
+
+        if (id < 0) {
+            log.error("Id should be positive, requested id: " + id);
+            throw new HumanServiceException(this.getClass().toString() + " The entity is not exist");
+        }
         Human human = storage.getEntity(id);
         HumanDTO humanDTO = new HumanDTO();
         mapper.toDto(human, humanDTO);
-        System.out.println("Get entity:");
-        System.out.println(humanDTO.toString());
+        log.info("Get entity: " + humanDTO.toString());
         return humanDTO;
     }
 
@@ -28,12 +33,12 @@ public class HumanService implements HumanStorage<HumanDTO>{
     public List<HumanDTO> getAllEntities() {
         List<HumanDTO> humanDTOList = new ArrayList<>();
         List<Human> humans = storage.getAllEntities();
-        System.out.println("Get all entities:");
+        log.info("Get all entities:");
         for(Human human:humans) {
             HumanDTO humanDTO = new HumanDTO();
             mapper.toDto(human, humanDTO);
             humanDTOList.add(humanDTO);
-            System.out.println(humanDTO.toString());
+            log.info(humanDTO.toString());
         }
         return humanDTOList;
     }
