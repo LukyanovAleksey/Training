@@ -1,17 +1,33 @@
 package Lukyanov;
 
+import Lukyanov.exceptions.CommandNotFoundException;
 import Lukyanov.filter.Filter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        String path = "D:/Users/1/Desktop/myfile.txt";
+        Scanner scanner = new Scanner(System.in);
+        String cmd;
 
         Filter filter = new Filter();
-        filter.execute("add 4 myfile.txt \"gfasnishfda 34289 reiwhr 438yh ihige\"");
-
+        filter.execute("help");
+        while (true) {
+            try {
+                //System.out.println("To exit program please type \"exit\"");
+                try {
+                    System.out.println("Please type your command:");
+                    cmd = scanner.nextLine();
+                    filter.execute(cmd);
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                    throw new CommandNotFoundException("Command is wrong!");
+                }
+            } catch (CommandNotFoundException e){
+                System.out.println(e.getMessage());
+                filter.execute("help");
+            }
+        }
     }
 
 }

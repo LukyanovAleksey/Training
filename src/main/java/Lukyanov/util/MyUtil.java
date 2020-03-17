@@ -1,11 +1,13 @@
 package Lukyanov.util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyUtil {
 
-    public static void readFileToList(String path, List<String> lines) {
+    public static List<String> readFileToList(String path) {
+        List<String> lines = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line = reader.readLine();
             while (line != null) {
@@ -16,21 +18,22 @@ public class MyUtil {
             }
         } catch (
                 IOException e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong during I/O");
         }
+        return lines;
     }
 
     public static void printFileToConsole(String path) {
         try(BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line = reader.readLine();
+            System.out.println("File contents:");
             while (line != null) {
                 System.out.println(line);
-                // read next line
                 line = reader.readLine();
             }
         } catch (
                 IOException e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong during I/O");
         }
     }
 
@@ -46,9 +49,9 @@ public class MyUtil {
                 bw.newLine();
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File not found!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Something went wrong during I/O");
         }
     }
 

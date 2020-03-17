@@ -1,9 +1,8 @@
 package Lukyanov.filter;
 
-import Lukyanov.handlers.ActionHandler;
-import Lukyanov.handlers.AddCommandHandler;
-import Lukyanov.handlers.DeleteCommandHandler;
-import Lukyanov.handlers.PrintCommandHandler;
+import Lukyanov.exceptions.CommandNotFoundException;
+import Lukyanov.exceptions.WrongCommandFormatException;
+import Lukyanov.handlers.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -15,12 +14,13 @@ public class Filter {
     private Pattern pattern;
 
     public Filter() {
-        //commandName 4 fileName "text"
-        pattern = Pattern.compile("(\\b(add|print|delete)\\b *[\\d]* *([\\w]+[\\w.]*) *(\"[\\w ]*\")?)|(exit)|(help)|(print)");
+        pattern = Pattern.compile("((add)|(print)|(delete)|(exit)|(help)).*");
         cmdToActionMap = new HashMap<>();
         cmdToActionMap.put("add", new AddCommandHandler());
         cmdToActionMap.put("delete", new DeleteCommandHandler());
         cmdToActionMap.put("print", new PrintCommandHandler());
+        cmdToActionMap.put("exit", new ExitCommandHandler());
+        cmdToActionMap.put("help", new HelpCommandHandler());
     }
 
     public void execute (String command){
@@ -28,7 +28,9 @@ public class Filter {
             try(Scanner scanner = new Scanner(command)) {
                 scanner.useDelimiter(" ");
                 cmdToActionMap.get(scanner.next()).handle(command);
+            } catch(WrongCommandFormatException e) {
+                System.out.println(e.getMessage());
             }
-        }
+        } else throw new CommandNotFoundException("Wrong command!");
     }
 }

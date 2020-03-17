@@ -1,5 +1,5 @@
 package Lukyanov.handlers;
 
 public interface ActionHandler {
-    void handle(String command);
+    void handle(String cmd);
 }
