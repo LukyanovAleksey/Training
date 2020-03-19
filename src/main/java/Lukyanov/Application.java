@@ -1,29 +1,48 @@
 package Lukyanov;
 
 
+import Lukyanov.parser.DomWrite;
 import Lukyanov.parser.MySAXParser;
+import Lukyanov.parser.PlantParser;
+import Lukyanov.validator.XmlValidator;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
+import java.util.List;
 
 public class Application {
-    private final static String PATH = "src/main/resources/plant_catalog.xml";
+    private final static String CATALOG = "src/main/resources/plant_catalog.xml";
+    private final static String CATALOG_MODIFIED = "src/main/resources/plant_catalog_modified.xml";
 
     public static void main(String[] args) {
-        File input = new File(PATH);
 
-//SAX Parser
         try {
+            File input = new File(CATALOG);
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
             MySAXParser mySaxParser = new MySAXParser();
             parser.parse(input, mySaxParser);
-            System.out.println("SAX parser result:\n" + mySaxParser.getResult());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        DomWrite domWrite = new DomWrite();
+        domWrite.createBookXml(3);
+        //xml validation
+        System.out.println("Result of XML validation: " + XmlValidator.validate("src/main/resources/book.xml",
+                "src/main/resources/book.xsd"));
+
+        PlantParser plantParser = new PlantParser();
+        List<Plant> plants = plantParser.parseToList(CATALOG);
+        plants.add(new Plant(
+                "commonField",
+                "botanicalField",
+                "zoneField",
+                "lightField",
+                "priceField",
+                "availabilityField"));
+        plantParser.createXml(CATALOG_MODIFIED, plants);
     }
 }
 
