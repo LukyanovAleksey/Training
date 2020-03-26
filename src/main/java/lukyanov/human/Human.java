@@ -1,4 +1,4 @@
-package Lukyanov.Human;
+package lukyanov.human;
 
 import lombok.Data;
 
@@ -44,7 +44,7 @@ public class Human {
     }
     @Override
     public String toString(){
-        return "Human{" +
+        return "human{" +
                 "id: " + id +
                 ", name: " + name +
                 ", birthDate: " + birthDate +

@@ -1,19 +1,19 @@
-package Lukyanov.Human;
+package lukyanov.human;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class HumanDTO {
+public class HumanDto {
     private long id;
     private String name;
-    private AddressDTO address;
+    private AddressDto address;
     private Date birthDate;
 
     @Override
     public String toString(){
-        return "Human{" +
+        return "human{" +
                 "id: " + id +
                 ", name: " + name +
                 ", address: " + address.toString() +
@@ -21,7 +21,7 @@ public class HumanDTO {
     }
 
     @Data
-    public class AddressDTO {
+    public class AddressDto {
         private String country;
         private String city;
         private String street;
