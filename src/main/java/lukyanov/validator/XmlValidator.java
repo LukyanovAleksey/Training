@@ -1,4 +1,4 @@
-package Lukyanov.validator;
+package lukyanov.validator;
 
 import org.xml.sax.SAXException;
 

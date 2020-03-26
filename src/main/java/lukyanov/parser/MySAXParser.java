@@ -1,12 +1,11 @@
-package Lukyanov.parser;
+package lukyanov.parser;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+@Slf4j
 public class MySAXParser extends DefaultHandler {
-    private Logger log = LoggerFactory.getLogger(MySAXParser.class);
     private StringBuffer result;
 
     public MySAXParser() {

@@ -18,11 +18,11 @@
             </Pattern>
         </encoder>
     </appender>
-    <logger name="Lukyanov.Application" level="info" additivity="false">
+    <logger name="lukyanov.Application" level="info" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </logger>
-    <logger name="Lukyanov.parser.MySAXParser" level="info" additivity="false">
+    <logger name="lukyanov.parser.MySAXParser" level="info" additivity="false">
         <appender-ref ref="FILE"/>
     </logger>
     <root level="debug">
