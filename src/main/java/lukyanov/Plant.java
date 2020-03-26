@@ -1,4 +1,4 @@
-package Lukyanov;
+package lukyanov;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

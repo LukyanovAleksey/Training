@@ -1,10 +1,10 @@
-package Lukyanov;
+package lukyanov;
 
 
-import Lukyanov.parser.DomWrite;
-import Lukyanov.parser.MySAXParser;
-import Lukyanov.parser.PlantParser;
-import Lukyanov.validator.XmlValidator;
+import lukyanov.parser.DomWrite;
+import lukyanov.parser.MySAXParser;
+import lukyanov.parser.PlantParser;
+import lukyanov.validator.XmlValidator;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
