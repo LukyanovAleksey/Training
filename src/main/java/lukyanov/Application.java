@@ -1,29 +1,29 @@
-package Lukyanov;
+package lukyanov;
 
-import Lukyanov.Exceptions.HumanServiceException;
-import Lukyanov.Human.HumanDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import lukyanov.exceptions.HumanServiceException;
+import lukyanov.human.HumanDto;
 
 import java.util.List;
 import java.util.Random;
 
+@Slf4j
 public class Application {
     public static void main(String[] args) {
-        Logger log = LoggerFactory.getLogger(Application.class);
+
         log.info("The program has been started");
 
         Random random = new Random();
         HumanService service = new HumanService();
-        HumanDTO humanDTO = null;
+        HumanDto humanDto = null;
         try {
-            humanDTO = service.getEntity(random.nextLong());
+            humanDto = service.getEntity(random.nextLong());
         } catch (HumanServiceException e) {
             e.printStackTrace();
         }
-        List<HumanDTO> listOfHumanDTO = service.getAllEntities();
-        service.saveEntity(humanDTO);
-        service.saveAllEntities(listOfHumanDTO);
+        List<HumanDto> listOfHumanDto = service.getAllEntities();
+        service.saveEntity(humanDto);
+        service.saveAllEntities(listOfHumanDto);
         log.info("All tasks have been finished!");
 
     }

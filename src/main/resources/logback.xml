@@ -8,24 +8,21 @@
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>testFile.log</file>
         <append>true</append>
-        <!-- set immediateFlush to false for much higher logging throughput -->
         <immediateFlush>true</immediateFlush>
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
             <Pattern>
                 %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
             </Pattern>
         </encoder>
     </appender>
-    <logger name="Lukyanov.Application" level="info" additivity="false">
+    <logger name="lukyanov.Application" level="info" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </logger>
-    <logger name="Lukyanov.HumanService" level="info" additivity="false">
+    <logger name="lukyanov.HumanService" level="info" additivity="false">
         <appender-ref ref="FILE"/>
     </logger>
-    <logger name="Lukyanov.HumanStorageImpl" level="error" additivity="false">
+    <logger name="lukyanov.HumanStorageImpl" level="error" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
     <root level="debug">
