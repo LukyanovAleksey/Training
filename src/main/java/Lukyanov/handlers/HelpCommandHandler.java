@@ -1,11 +1,12 @@
-package Lukyanov.handlers;
+package lukyanov.handlers;
 
-import Lukyanov.exceptions.WrongCommandFormatException;
+import lukyanov.exceptions.WrongCommandFormatException;
 
 import java.util.regex.Pattern;
 
-public class HelpCommandHandler implements ActionHandler{
+public class HelpCommandHandler implements ActionHandler {
     private Pattern pattern;
+
     @Override
     public void handle(String cmd) {
         pattern = Pattern.compile("^(\\b(help)\\b)$");

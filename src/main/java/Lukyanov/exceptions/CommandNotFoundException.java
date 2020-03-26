@@ -1,4 +1,4 @@
-package Lukyanov.exceptions;
+package lukyanov.exceptions;
 
 public class CommandNotFoundException extends RuntimeException {
     public CommandNotFoundException(String msg) {

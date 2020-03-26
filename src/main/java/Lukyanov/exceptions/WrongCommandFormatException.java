@@ -1,4 +1,4 @@
-package Lukyanov.exceptions;
+package lukyanov.exceptions;
 
 public class WrongCommandFormatException extends RuntimeException {
     public WrongCommandFormatException(String msg) {

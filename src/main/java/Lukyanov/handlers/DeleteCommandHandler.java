@@ -1,21 +1,21 @@
-package Lukyanov.handlers;
+package lukyanov.handlers;
 
-import Lukyanov.exceptions.WrongCommandFormatException;
-import Lukyanov.util.MyUtil;
+import lukyanov.exceptions.WrongCommandFormatException;
+import lukyanov.util.MyUtil;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/*
-Used to delete line in file
-Available type of commands:
-delete 5 fileName
-delete fileName
+/**
+ * Used to delete line in file
+ * Available type of commands:
+ * delete 5 fileName
+ * delete fileName
  */
-
 public class DeleteCommandHandler implements ActionHandler {
     private Pattern pattern;
+
     @Override
     public void handle(String cmd) {
         pattern = Pattern.compile("^(\\b(delete)\\b)(\\s)((\\d*)(\\s))?([\\w:/])*(\\.txt)$");
@@ -28,12 +28,13 @@ public class DeleteCommandHandler implements ActionHandler {
             //read line's position
             if (hasLineNumber) {
                 lineNumber = scanner.nextInt();
-                if (lineNumber < 1) throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
+                if (lineNumber < 1)
+                    throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
             }
             String fileName = scanner.next();
             List<String> lines = MyUtil.readFileToList(fileName);
             if (hasLineNumber) {
-                lines.remove(lineNumber-1);
+                lines.remove(lineNumber - 1);
             } else {
                 lines.remove(lines.size());
             }
