@@ -1,4 +1,4 @@
-package Lukyanov;
+package lukyanov;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -11,15 +11,15 @@ public class Application {
         //Duplicates: 0-1, 2-3, 4-5
         humanArray[0] = new Human("John Doe", 30, null);
         humanArray[0].setAddress(humanArray[0].new Address("Togliatti", "Frunze", "31", 46));
-        humanArray[1]=humanArray[0];
+        humanArray[1] = humanArray[0];
 
         humanArray[2] = new Human("Kye Thomas", 54, null);
         humanArray[2].setAddress(humanArray[2].new Address("Samara", "Permitina", "37", 57));
-        humanArray[3]=humanArray[2];
+        humanArray[3] = humanArray[2];
 
         humanArray[4] = new Human("Conner Rodriguez", 54, null);
         humanArray[4].setAddress(humanArray[4].new Address("Dubovskoe", "Progonnaya", "68", 326));
-        humanArray[5]=humanArray[4];
+        humanArray[5] = humanArray[4];
 
         humanArray[6] = new Human("Silas Torres", 23, null);
         humanArray[6].setAddress(humanArray[6].new Address("Turochak", "Autonomnaya", "28", 258));
@@ -62,13 +62,13 @@ public class Application {
 
         printSeparator('#');
         System.out.println("Задание 7 и 8");
-        User user = new User("John Doe", User.Role.ADMIN);
+        User user = new User("John Doe", Role.ADMIN);
         userGreeting(user);
 
         printSeparator('#');
         System.out.println("9. Написать программу сортирующую HashMap по ключу. (Создание и генерация данными какими захотите)");
         Map<String, Human> map = new HashMap<>();
-        for (Human human:humans) {
+        for (Human human : humans) {
             map.put(human.getFio(), human);
         }
         TreeMap<String, Human> sortedMap = new TreeMap<>(map);
@@ -86,7 +86,7 @@ public class Application {
 
     private static void printSeparator(char ch) {
         System.out.println();
-        for (int i=0; i<30; i++) {
+        for (int i = 0; i < 30; i++) {
             System.out.print(ch);
         }
         System.out.println();
@@ -97,20 +97,20 @@ public class Application {
         int size = humanList.size();
         int duplicates = 0;
 
-        for (int i=0; i <size-1; i++) {
-            for (int j = i+1; j<size; j++) {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i + 1; j < size; j++) {
                 // no need for if ( i == j ) here
                 if (!humanList.get(j).equals(humanList.get(i)))
                     continue;
                 duplicates++;
-                System.out.println("Duplicate #"+duplicates+": "+humanList.get(j).toString()+" has been found!");
+                System.out.println("Duplicate #" + duplicates + ": " + humanList.get(j).toString() + " has been found!");
                 humanList.remove(j);
                 j--;
                 size--;
             }
         }
-        if(duplicates!=0) {
-            System.out.println(duplicates+" duplicates has been found and removed");
+        if (duplicates != 0) {
+            System.out.println(duplicates + " duplicates has been found and removed");
         }
     }
 
@@ -133,11 +133,11 @@ public class Application {
     }
 
     private static void userGreeting(User user) {
-        Map<User.Role, String> descriptionMap = new HashMap<>();
-        descriptionMap.put(User.Role.ADMIN, "Administrator description");
-        descriptionMap.put(User.Role.MODERATOR, "Moderator description");
-        descriptionMap.put(User.Role.USER, "User description");
-        System.out.println("Greeting user "+user.getFio() +" with role "+ user.getRole() +" with description " + descriptionMap.get(user.getRole()));
+        Map<Role, String> descriptionMap = new HashMap<>();
+        descriptionMap.put(Role.ADMIN, "Administrator description");
+        descriptionMap.put(Role.MODERATOR, "Moderator description");
+        descriptionMap.put(Role.USER, "User description");
+        System.out.println("Greeting user " + user.getFio() + " with role " + user.getRole() + " with description " + descriptionMap.get(user.getRole()));
     }
 
     private static Map<String, Human> sortMapByValue(Map<String, Human> map) {
@@ -153,8 +153,8 @@ public class Application {
         for (int i = 0; i < 10; i++) {
             linkedList.add(rnd.nextInt());
         }
-        for (int value:linkedList) {
-            System.out.println("Index: "+linkedList.indexOf(value)+ "; Value: "+value);
+        for (int value : linkedList) {
+            System.out.println("Index: " + linkedList.indexOf(value) + "; Value: " + value);
         }
     }
 

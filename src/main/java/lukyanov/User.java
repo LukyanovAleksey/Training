@@ -1,4 +1,4 @@
-package Lukyanov;
+package lukyanov;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,5 +8,4 @@ import lombok.Data;
 public class User {
     private String fio;
     private Role role;
-    public enum Role{ADMIN, USER, MODERATOR}
 }
