@@ -1,4 +1,4 @@
-package Lukyanov.util;
+package lukyanov.util;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ public class MyUtil {
 
     public static List<String> readFileToList(String path) {
         List<String> lines = new ArrayList<>();
-        try(BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line = reader.readLine();
             while (line != null) {
                 //System.out.println(line);
@@ -24,7 +24,7 @@ public class MyUtil {
     }
 
     public static void printFileToConsole(String path) {
-        try(BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line = reader.readLine();
             System.out.println("File contents:");
             while (line != null) {
@@ -44,7 +44,7 @@ public class MyUtil {
                                 new File(path)
                         )
                 ))) {
-            for(String line:lines) {
+            for (String line : lines) {
                 bw.write(line);
                 bw.newLine();
             }

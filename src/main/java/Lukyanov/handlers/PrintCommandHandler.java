@@ -1,21 +1,22 @@
-package Lukyanov.handlers;
+package lukyanov.handlers;
 
-import Lukyanov.exceptions.WrongCommandFormatException;
-import Lukyanov.util.MyUtil;
+import lukyanov.exceptions.WrongCommandFormatException;
+import lukyanov.util.MyUtil;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/*
-Used to print new lines in file
-Available type of commands:
-print 5 fileName
-print fileName
+/**
+ * Used to print new lines in file
+ * Available type of commands:
+ * print 5 fileName
+ * print fileName
  */
 
 public class PrintCommandHandler implements ActionHandler {
     private Pattern pattern;
+
     @Override
     public void handle(String cmd) {
         pattern = Pattern.compile("^(\\b(print)\\b)(\\s)((\\d*)(\\s))?([\\w:/])*(\\.txt)$");
@@ -28,12 +29,13 @@ public class PrintCommandHandler implements ActionHandler {
             //read line's position
             if (hasLineNumber) {
                 lineNumber = scanner.nextInt();
-                if (lineNumber < 1) throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
+                if (lineNumber < 1)
+                    throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
             }
             String fileName = scanner.next();
             List<String> lines = MyUtil.readFileToList(fileName);
             if (hasLineNumber) {
-                System.out.println(lines.get(lineNumber-1));
+                System.out.println(lines.get(lineNumber - 1));
             } else {
                 MyUtil.printFileToConsole(fileName);
             }

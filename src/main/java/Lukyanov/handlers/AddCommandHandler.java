@@ -1,21 +1,21 @@
-package Lukyanov.handlers;
+package lukyanov.handlers;
 
-import Lukyanov.exceptions.WrongCommandFormatException;
-import Lukyanov.util.MyUtil;
+import lukyanov.exceptions.WrongCommandFormatException;
+import lukyanov.util.MyUtil;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-/*
-Used to add new lines in file
-Available type of commands:
-add 5 fileName "text"
-add fileName "text"
+/**
+ * Used to add new lines in file
+ * Available type of commands:
+ * add 5 fileName "text"
+ * add fileName "text"
  */
-
 public class AddCommandHandler implements ActionHandler {
     private Pattern pattern;
+
     @Override
     public void handle(String cmd) {
         pattern = Pattern.compile("^(\\b(add)\\b)(\\s)((\\d*)(\\s))?([\\w:/])*(\\.txt)(\\s)(\".*\")$");
@@ -28,7 +28,8 @@ public class AddCommandHandler implements ActionHandler {
             //read line's position
             if (hasLineNumber) {
                 lineNumber = scanner.nextInt();
-                if (lineNumber < 1) throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
+                if (lineNumber < 1)
+                    throw new WrongCommandFormatException("Wrong number of line! It should be at least 1");
             }
             String fileName = scanner.next();
             String text = scanner.findInLine("\".*\"");
@@ -37,9 +38,9 @@ public class AddCommandHandler implements ActionHandler {
             List<String> lines = MyUtil.readFileToList(fileName);
             if (hasLineNumber) {
                 if (lineNumber < lines.size()) {
-                    lines.add(lineNumber-1, text);
+                    lines.add(lineNumber - 1, text);
                 } else {
-                    for (int i=lines.size(); i<lineNumber-1; i++) {
+                    for (int i = lines.size(); i < lineNumber - 1; i++) {
                         lines.add("");
                     }
                     lines.add(text);

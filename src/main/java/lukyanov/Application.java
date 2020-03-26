@@ -1,7 +1,7 @@
-package Lukyanov;
+package lukyanov;
 
-import Lukyanov.exceptions.CommandNotFoundException;
-import Lukyanov.filter.Filter;
+import lukyanov.exceptions.CommandNotFoundException;
+import lukyanov.filter.Filter;
 
 import java.util.Scanner;
 
@@ -14,7 +14,6 @@ public class Application {
         filter.execute("help");
         while (true) {
             try {
-                //System.out.println("To exit program please type \"exit\"");
                 try {
                     System.out.println("Please type your command:");
                     cmd = scanner.nextLine();
@@ -23,7 +22,7 @@ public class Application {
                 } catch (Exception e) {
                     throw new CommandNotFoundException("Command is wrong!");
                 }
-            } catch (CommandNotFoundException e){
+            } catch (CommandNotFoundException e) {
                 System.out.println(e.getMessage());
                 filter.execute("help");
             }

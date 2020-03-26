@@ -1,8 +1,8 @@
-package Lukyanov.filter;
+package lukyanov.filter;
 
-import Lukyanov.exceptions.CommandNotFoundException;
-import Lukyanov.exceptions.WrongCommandFormatException;
-import Lukyanov.handlers.*;
+import lukyanov.exceptions.CommandNotFoundException;
+import lukyanov.exceptions.WrongCommandFormatException;
+import lukyanov.handlers.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -23,12 +23,12 @@ public class Filter {
         cmdToActionMap.put("help", new HelpCommandHandler());
     }
 
-    public void execute (String command){
+    public void execute(String command) {
         if (pattern.matcher(command).matches()) {
-            try(Scanner scanner = new Scanner(command)) {
+            try (Scanner scanner = new Scanner(command)) {
                 scanner.useDelimiter(" ");
                 cmdToActionMap.get(scanner.next()).handle(command);
-            } catch(WrongCommandFormatException e) {
+            } catch (WrongCommandFormatException e) {
                 System.out.println(e.getMessage());
             }
         } else throw new CommandNotFoundException("Wrong command!");
