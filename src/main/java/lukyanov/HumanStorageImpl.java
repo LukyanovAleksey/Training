@@ -1,6 +1,6 @@
-package Lukyanov;
+package lukyanov;
 
-import Lukyanov.Human.Human;
+import lukyanov.human.Human;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ public class HumanStorageImpl implements HumanStorage<Human> {
     public List<Human> getAllEntities() {
         List<Human> humans = new ArrayList<>();
         Random random = new Random();
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             humans.add(createHuman(random.nextLong()));
         }
         return humans;
@@ -32,21 +32,21 @@ public class HumanStorageImpl implements HumanStorage<Human> {
     @Override
     public void saveAllEntities(List<Human> humans) {
         System.out.println("Save all entities:");
-        for (Human human:humans) {
+        for (Human human : humans) {
             System.out.println(human);
         }
     }
 
-    private Human createHuman(long UUID){
+    private Human createHuman(long uuid) {
         Human human = new Human();
 
-        human.setId(UUID);
-        human.setName("human"+UUID);
-        human.setAddress(createAddress(human, UUID));
+        human.setId(uuid);
+        human.setName("human" + uuid);
+        human.setAddress(createAddress(human, uuid));
 
         // -946771200000L = January 1, 1940
         // Add up to 80 years to it
-        long ms = -946771200000L + (Math.abs(UUID) % (80L * 365 * 24 * 60 * 60 * 1000));
+        long ms = -946771200000L + (Math.abs(uuid) % (80L * 365 * 24 * 60 * 60 * 1000));
         human.setBirthDate(new Date(ms));
 
         human.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));
@@ -59,11 +59,11 @@ public class HumanStorageImpl implements HumanStorage<Human> {
     private Human.Address createAddress(Human human, long id) {
         Random random = new Random();
         Human.Address address = human.new Address();
-        address.setCountry("Country"+id);
-        address.setCity("City"+id);
-        address.setStreet("Street"+id);
-        address.setHome("Home"+id);
-        address.setFlat("Flat"+id);
+        address.setCountry("Country" + id);
+        address.setCity("City" + id);
+        address.setStreet("Street" + id);
+        address.setHome("Home" + id);
+        address.setFlat("Flat" + id);
         address.setIndex(random.nextInt());
         address.setEditedBy(random.nextLong());
         address.setModifiedDate(new Date(java.lang.System.currentTimeMillis()));

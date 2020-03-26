@@ -1,4 +1,4 @@
-package Lukyanov.Human;
+package lukyanov.human;
 
 import lombok.Data;
 
@@ -18,7 +18,7 @@ public class Human {
 
     @Data
     public class Address {
-        //fields for DTO
+        //fields for Dto
         private String country;
         private String city;
         private String street;
@@ -39,12 +39,13 @@ public class Human {
                     ", Flat: " + flat +
                     ", Index: " + index +
                     ", editedBy: " + editedBy +
-                    ", modifiedDate: " + modifiedDate +"}";
+                    ", modifiedDate: " + modifiedDate + "}";
         }
     }
+
     @Override
-    public String toString(){
-        return "Human{" +
+    public String toString() {
+        return "human{" +
                 "id: " + id +
                 ", name: " + name +
                 ", birthDate: " + birthDate +
