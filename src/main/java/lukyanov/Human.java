@@ -1,4 +1,4 @@
-package Lukyanov;
+package lukyanov;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class Human implements Comparable<Human> {
 
         @Override
         public String toString() {
-            return "{"+city+", "+street+", "+home+", "+flat+"}";
+            return "{" + city + ", " + street + ", " + home + ", " + flat + "}";
         }
     }
 
@@ -33,6 +33,6 @@ public class Human implements Comparable<Human> {
 
     @Override
     public String toString() {
-        return "{"+fio+", "+age+", "+address.toString()+"}";
+        return "{" + fio + ", " + age + ", " + address.toString() + "}";
     }
 }
