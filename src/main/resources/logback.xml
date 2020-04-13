@@ -14,7 +14,7 @@
         <file>logs/logFile.txt</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
-                %d{yyyy-MM-dd HH:mm:ss} - %msg%n
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
             </Pattern>
         </encoder>
         <rollingPolicy
@@ -28,6 +28,22 @@
     </appender>
 
     <logger name="lukyanov.Application" level="info" additivity="false">
+        <appender-ref ref="logFile"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="lukyanov.task1.RaceConditionExample" level="info" additivity="false">
+        <appender-ref ref="logFile"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="lukyanov.task1.DeadLockExample" level="info" additivity="false">
+        <appender-ref ref="logFile"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="lukyanov.task2.DeadLockResolution" level="info" additivity="false">
+        <appender-ref ref="logFile"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="lukyanov.task2.RaceConditionResolution" level="info" additivity="false">
         <appender-ref ref="logFile"/>
         <appender-ref ref="console"/>
     </logger>
